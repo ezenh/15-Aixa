@@ -59,30 +59,52 @@ let maxTop = sectionTransparent.offsetHeight
 let maxBottom = sectionDresscode.getBoundingClientRect().bottom
 
 scroll_container.style.background = `linear-gradient(rgb(100, 190, 250), rgb(100, 190, 250)`
-// hierba.style.top = `${map.offsetTop}px`
 
 //DETECION DE ARTICULO VISIBLE///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 scroll_container.addEventListener('scroll', () => {
-    // console.log(map.getBoundingClientRect().top - sectionMap.getBoundingClientRect().top + scroll_container.scrollTop)
-    // console.log(scroll_container.clientHeight)
-    // console.log('top: ' + sectionPhrase.getBoundingClientRect().top)
-    // console.log('bottom: ' + sectionPhrase.getBoundingClientRect().bottom)
-
 // --> Checkea la posicion TOP o BOTTOM de cada articulo
     Array.from(scroll_container.children).forEach(section => {
         sectionBottom = section.getBoundingClientRect().bottom
         sectionTop = section.getBoundingClientRect().top
 
-    // console.log(sectionTransparent.offsetHeight - sectionDresscode.getBoundingClientRect().bottom)
+        console.log(scroll_container.offsetHeight/sectionDresscode.getBoundingClientRect().bottom)
+        // console.log(scroll_container.offsetHeight)
+        if(section != sectionTransparent) {
 // --> Presenta los H2 cada ve que la section esta en mitad de pantalla
-        if ((sectionTop >= 0 && sectionBottom <= scroll_container.clientHeight) || (sectionTop <= 0 && sectionBottom >= scroll_container.clientHeight)) {
-            console.log(section)
-            for(element of section.children) {
-                if (element.className == 'section_title') {
-                    element.style.animation = 'showTitle .5s linear'
+        if ((sectionTop >= 0 && sectionBottom <= scroll_container.offsetHeight) || (sectionTop <= 0 && sectionBottom >= scroll_container.offsetHeight)) {
+        // console.log(section)
+            //     // console.log('seccion centrada: ',section)
+
+            Array.from(section.children).forEach(element => {
+
+                if (element.className !== 'extras' && element.className !== 'waves' && element.id != 'contacto') {
+                    // element.style.animation = 'showContent .5s ease'
+                    element.style.transform = 'scale(1)'
+                    element.style.filter = 'blur(0px)'
+
                     element.style.opacity = '1'
-                    }}
-            }
+                    element.style.transition = 'transform .5s, opacity 2s, blur .5s'
+                    // console.log(element.className)
+                }
+
+            })
+        }else {
+                Array.from(section.children).forEach(element => {
+                    if (element.className !== 'extras' && element.className !== 'waves' && element.id != 'contacto') {
+                        element.style.transform = 'scale(0)'
+
+                        element.style.opacity = '0'
+                        element.style.filter = 'blur(10px)'
+
+                        element.style.transition = 'transform 1s, opacity .25s, blur .5s'
+
+                    }
+                // element.style.transform = 'scale(0)'
+
+            })
+        }
+    }
+
         let red = (sectionTransparent.offsetHeight - sectionDresscode.getBoundingClientRect().bottom) / ((maxTop-maxBottom) / 100)
         let green = (sectionTransparent.offsetHeight - sectionDresscode.getBoundingClientRect().bottom) / ((maxTop-maxBottom) / 180)
         let blue = (sectionTransparent.offsetHeight - sectionDresscode.getBoundingClientRect().bottom) / ((maxTop-maxBottom) / 200)

@@ -61,6 +61,11 @@ main {
         gap: 12px;
         color: aliceblue;
         }
+        main section:nth-child(n) {
+            /* filter: blur(10px); */
+            display: flex;
+            /* transition: all .5s; */
+        }
         main section:not(#sectionTransparent, #sectionPhrase) {
             border-image: linear-gradient(to right, transparent 30%, #ffffff 10%,#ffffff 70%, transparent 60%) 1/2px 0% 0% 0 stretch; /* Gradiente lineal centrado en el borde inferior */
             }
@@ -70,7 +75,7 @@ main {
             text-align: center;
             opacity: 0;
             }
-            @keyframes showTitle {
+            @keyframes showContent {
                 0% {
                     transform: scale(1.4);
                     opacity: 0;
@@ -274,17 +279,29 @@ main {
 #sectionCountdown #timeLeft, #timeTags {
     display: flex;
     width: 360px;
-    justify-content: space-around;
     font-size: 3rem;
     padding-bottom: 10px;
     z-index: 10;
     }
-    #timeLeft p {
-        font-size: 3rem;
+    #timeLeft {
+        justify-content: space-evenly;
         }
-    #timeTags p {
-        font-size: 1.5rem;
+        #timeLeft p {
+            height: 24px;
+            width: 100%;
+            font-size: 3rem;
+            }
+        #timeLeft p:not(:last-child) {
+            border-right: solid 2px rgb(255, 255, 255, .5);
+            }
+
+    #timeTags {
+        justify-content: space-around;
         }
+        #timeTags p{
+            width: 100%;
+            font-size: 1.5rem;
+            }
 
 #purple {
     position: absolute;
@@ -407,14 +424,14 @@ main {
     }
 /* FOOD MENU ///////////////////////////////////////////////////////////////// */
 #sectionMenu img:nth-child(3) {
-    width: 50px;
+    width: 80px;
     aspect-ratio: 1 / 1;
-    margin: 20px;
+    margin: 40px;
     }
 #coral {
     width: 130px;
-    bottom: 55px;
-    right: 80px;
+    bottom: 48px;
+    left: 50%;
     z-index: 10;
 }
 #seahorse {
@@ -432,6 +449,7 @@ main {
     background-repeat: no-repeat;
     background-position: bottom 30px right 0px;
     overflow: hidden;
+    margin-bottom: 0;
     } 
     #sectionDresscode::before {
         content: "";
