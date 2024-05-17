@@ -261,10 +261,8 @@ window.addEventListener('message', (event) => {
       const client_bank_account = document.getElementsByClassName('client_bank_account');
       if (client_bank_account) {
         Array.from(client_bank_account).forEach(element => {
-          console.log(element)
           element.textContent = 'CBU/CVU/ALIAS'
       })
-        console.log(client_bank_account)
       }
   }
 });
