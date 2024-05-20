@@ -67,7 +67,6 @@ scroll_container.addEventListener('scroll', () => {
         sectionBottom = section.getBoundingClientRect().bottom
         sectionTop = section.getBoundingClientRect().top
 
-        console.log(scroll_container.offsetHeight/sectionDresscode.getBoundingClientRect().bottom)
         // console.log(scroll_container.offsetHeight)
         if(section != sectionTransparent) {
 // --> Presenta los H2 cada ve que la section esta en mitad de pantalla
